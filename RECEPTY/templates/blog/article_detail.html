@@ -1,0 +1,55 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 900px; margin: 2rem auto; padding: 0 1rem;">
+    <article class="card" style="background: white; padding: 2rem; border-radius: 10px;">
+        <h1 style="color: #667eea;">{{ article.title }}</h1>
+        <p style="color: #666;">✍️ {{ article.author.get_full_name|default:article.author.username }} | 👁️ {{ article.views_count }} просмотров | 📅 {{ article.created_date|date:"d.m.Y" }}</p>
+
+        {% if article.image %}
+            <img src="{{ article.image.url }}" alt="{{ article.title }}" style="max-width: 100%; margin: 1rem 0;">
+        {% endif %}
+
+        <div style="font-size: 1.1rem; line-height: 1.6; margin: 2rem 0;">
+            {{ article.content|safe }}
+        </div>
+
+        <div style="display: flex; gap: 1rem;">
+            <a href="{% url 'blog:article_list' %}" class="btn-primary">← Назад к статьям</a>
+        </div>
+    </article>
+
+    <!-- Блок комментариев -->
+    <div class="comments-section" style="margin-top: 2rem;">
+        <h2 style="color: #667eea;">💬 Комментарии ({{ comments|length }})</h2>
+
+        {% for comment in comments %}
+            <div class="comment" style="background: white; padding: 1rem; border-radius: 10px; margin-bottom: 1rem;">
+                <p style="color: #666;">👤 {{ comment.author.username }} | {{ comment.created_date|date:"d.m.Y H:i" }}</p>
+                <p>{{ comment.text }}</p>
+            </div>
+        {% empty %}
+            <p style="background: white; padding: 1rem; border-radius: 10px;">Пока нет комментариев. Будьте первым!</p>
+        {% endfor %}
+
+        <!-- Форма добавления комментария -->
+        {% if user.is_authenticated %}
+            <div class="comment-form" style="background: white; padding: 1.5rem; border-radius: 10px; margin-top: 1rem;">
+                <h3>Добавить комментарий</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    <textarea name="text" rows="4" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 5px;" placeholder="Напишите ваш комментарий..."></textarea>
+                    <button type="submit" class="btn-primary" style="margin-top: 1rem;">Отправить</button>
+                </form>
+            </div>
+        {% else %}
+            <div class="login-to-comment" style="background: white; padding: 1.5rem; border-radius: 10px; text-align: center;">
+                <p><a href="{% url 'blog:login' %}">Войдите</a> или <a href="{% url 'blog:sign' %}">зарегистрируйтесь</a>, чтобы оставить комментарий</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+/* Данный файл(main.css) — основной файл, который импортирует все стили */
+
+/* Основные настройки */
+@import url('base.css');
+
+/* Компоненты (кнопки) */
+@import url('components.css');
+
+/* Шапка приложения */
+@import url('header.css');
+
+/* Подвал приложения */
+@import url('footer.css');
+
+/* Блок новостей */
+@import url('news.css');
+
+/* ТОП 10 статей */
+@import url('top_article.css');
+
+/* Адаптивность */
+@import url('responsive.css');
+
+/* Большой-блок */
+@import url('block.css');
+
+/* Статьи */
+@import url('article.css');
+
+/* Новости */
+@import url('news_page.css');
+
+/* Страница О проекте */
+@import url('about.css');
+
+/* Страница Связь с нами */
+@import url('connection.css');
+
+/* Страница Связь с нами */
+@import url('auth.css');

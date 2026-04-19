@@ -1,0 +1,117 @@
+/* ========== ДЕСКТОП (1024px и выше) ========== */
+@media (min-width: 1024px) {
+
+    .nav-desktop {
+        display: block;
+        margin-left: 2rem;
+    }
+
+    .desktop-actions {
+        display: flex;
+        margin-left: auto;
+    }
+
+    .hamb {
+        display: none;
+    }
+
+    .nav-mobile {
+        display: none;
+    }
+
+    .header .container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .logo {
+        flex-shrink: 0;
+    }
+}
+
+/* ========== ПЛАНШЕТЫ (768px - 1023px) ========== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .nav-desktop {
+        display: block;
+        margin-left: var(--space-xs);
+    }
+
+    .desktop-actions {
+        display: flex;
+    }
+
+    .header .container {
+        padding-left: var(--space-xs);
+        padding-right: var(--space-xs);
+    }
+
+    .menu-desktop {
+        gap: var(--space-xs);
+    }
+
+    .menu-desktop li a {
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    .login-btn,
+    .signup-btn {
+        padding: 4px 10px;
+        font-size: 0.8rem;
+    }
+
+    .search-dropdown {
+        width: 355px;
+        right: -10px;
+    }
+
+    .hamb {
+        display: none;
+    }
+
+    .nav-mobile {
+        display: none;
+    }
+
+    .search-label{
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* ========== МОБИЛЬНЫЕ (до 768px) ========== */
+@media (max-width: 767px) {
+
+    /* Исправлено с 768px на 767px */
+    .nav-desktop,
+    .desktop-actions {
+        display: none;
+    }
+
+    .search-wrapper {
+        display: none;
+    }
+
+    .hamb {
+        display: flex;
+    }
+
+    .mobile-search-simple {
+        display: block;
+    }
+}
+
+/* ========== ОЧЕНЬ МАЛЕНЬКИЕ ТЕЛЕФОНЫ ========== */
+@media (max-width: 480px) {
+    .menu-footer {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .mobile-search-simple-input {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

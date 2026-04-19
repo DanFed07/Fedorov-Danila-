@@ -1,0 +1,71 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 800px; margin: 2rem auto;">
+    <div class="card" style="background: white; padding: 2rem; border-radius: 10px;">
+        <h1 style="color: #667eea;">{{ title }}</h1>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div style="padding: 1rem; margin-bottom: 1rem; border-radius: 5px; background: #d4edda; color: #155724;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: #333;">
+                        {{ field.label }}
+                    </label>
+                    {% if field.field.widget.input_type == 'text' %}
+                        <input type="text" name="{{ field.name }}" value="{{ field.value|default:'' }}"
+                               style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem;">
+                    {% elif field.field.widget.input_type == 'textarea' %}
+                        <textarea name="{{ field.name }}" rows="10"
+                                  style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem;">{{ field.value|default:'' }}</textarea>
+                    {% elif field.field.widget.input_type == 'file' %}
+                        <input type="file" name="{{ field.name }}"
+                               style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 5px;">
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+
+                    {% if field.help_text %}
+                        <small style="color: #666; display: block; margin-top: 0.25rem;">{{ field.help_text }}</small>
+                    {% endif %}
+
+                    {% for error in field.errors %}
+                        <small style="color: #e74c3c; display: block; margin-top: 0.25rem;">{{ error }}</small>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+
+            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                <button type="submit" class="btn-primary" style="background: #27ae60; padding: 0.75rem 1.5rem;">Сохранить</button>
+                <a href="{% url 'blog:article_list' %}" class="btn-primary" style="background: #666; padding: 0.75rem 1.5rem; text-decoration: none;">Отмена</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+    .form-control:focus {
+        outline: none;
+        border-color: #667eea;
+    }
+</style>
+{% endblock %}

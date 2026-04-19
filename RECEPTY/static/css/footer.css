@@ -1,0 +1,215 @@
+/* ========== ФУТЕР ========== */
+.footer {
+    background: linear-gradient(135deg, #1a1a1a 0%, #42302cff 100%);
+    color: #c4a9a4;
+    padding: 3rem 2rem 2rem;
+    margin-top: 4rem;
+    border-top: 5px solid var(--color_line);
+}
+
+.container-footer {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ========== ОПИСАНИЕ ПРОЕКТА ========== */
+.footer-about {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.footer-description {
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* ========== СОЦИАЛЬНЫЕ СЕТИ ========== */
+.footer-social {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.social-title {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.social-network {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 1.5rem;
+}
+
+.social-network li {
+    display: inline-block;
+}
+
+.social-network img {
+    width: 36px;
+    height: 36px;
+    transition: all 0.3s ease;
+    vertical-align: middle;
+    filter: brightness(0.8);
+}
+
+.social-network a:hover img {
+    transform: translateY(-3px);
+    filter: brightness(1);
+}
+
+/* ========== НАВИГАЦИЯ ФУТЕРА ========== */
+.footer-navigation {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.menu-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 2rem;
+}
+
+.menu-footer a {
+    color: #c4a9a4;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-bottom: 3px;
+}
+
+/* Эффект подчеркивания */
+.menu-footer a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: var(--color_header_l);
+    transition: all 0.3s ease;
+}
+
+.menu-footer a:hover {
+    color: var(--color_header_l);
+}
+
+.menu-footer a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* ========== КОПИРАЙТ ========== */
+.footer-copyright {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-copyright p {
+    font-size: 0.8rem;
+    color: #c4a9a4;
+}
+
+/* ========== АДАПТИВНОСТЬ ========== */
+
+/* Планшеты (до 1023px) */
+@media (max-width: 1023px) {
+    .footer {
+        padding: 2rem 1.5rem 1.5rem;
+    }
+
+    .menu-footer {
+        gap: 1.5rem;
+    }
+
+    .menu-footer a {
+        font-size: 0.85rem;
+    }
+}
+
+/* Мобильные (до 768px) */
+@media (max-width: 768px) {
+    .footer {
+        padding: 2rem 1rem 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .footer-description {
+        font-size: 0.85rem;
+        padding: 0 0.5rem;
+    }
+
+    .menu-footer {
+        gap: 1rem;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu-footer li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .menu-footer a {
+        display: block;
+        padding: 0.5rem;
+        font-size: 1rem;
+    }
+
+    .menu-footer a::after {
+        display: none;
+    }
+
+    .social-network {
+        gap: 1rem;
+    }
+
+    .social-network img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .social-title {
+        font-size: 0.85rem;
+    }
+
+    .footer-copyright p {
+        font-size: 0.75rem;
+    }
+}
+
+/* Очень маленькие экраны (до 480px) */
+@media (max-width: 480px) {
+    .footer {
+        padding: 1.5rem 0.75rem 1rem;
+    }
+
+    .footer-description {
+        font-size: 0.8rem;
+    }
+
+    .menu-footer {
+        gap: 0.5rem;
+    }
+
+    .menu-footer a {
+        font-size: 0.9rem;
+        padding: 0.4rem;
+    }
+
+    .social-network img {
+        width: 28px;
+        height: 28px;
+    }
+}

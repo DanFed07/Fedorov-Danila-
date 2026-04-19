@@ -1,0 +1,177 @@
+/* ========== ДЕСКТОПНЫЕ КНОПКИ ========== */
+.desktop-actions {
+    display: none;
+    /* Скрыто на мобильных */
+    align-items: center;
+    gap: var(--space-sm);
+    margin-left: auto;
+}
+
+/* ========== ПОИСК ЧЕРЕЗ ЧЕКБОКС ========== */
+.search-wrapper {
+    position: relative;
+}
+
+.search-checkbox {
+    display: none;
+}
+
+.search-label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    padding: 8px;
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition);
+}
+
+.search-label img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Только масштабирование при наведении, без смены цвета */
+.search-label:hover {
+    background-color: var(--color_after);
+    transform: scale(1.05);
+}
+
+.search-label:hover img {
+    transform: scale(1.1);
+}
+/* Выпадающее окно поиска */
+.search-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 400px;
+    background: var(--color_header);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    border: 2px solid var(--color_line);
+}
+
+/* Показываем когда чекбокс отмечен */
+.search-checkbox:checked ~ .search-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Стрелка над выпадающим окном */
+.search-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: 15px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid var(--color_header);
+}
+
+/* Форма поиска */
+.search-form {
+    display: flex;
+    padding: 12px;
+    gap: 8px;
+    background: var(--color_header);
+    border-radius: var(--border-radius);
+}
+
+/* Поле ввода */
+.search-input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 2px solid var(--color_line);
+    border-radius: var(--border-radius-sm);
+    font-size: 14px;
+    outline: none;
+    background: var(--color_bg);
+    color: var(--color_dark);
+}
+
+.search-input:focus {
+    border-color: var(--color_search);
+    box-shadow: 0 0 0 3px rgba(150, 167, 99, 0.2);
+}
+
+/* Кнопка "Найти" */
+.search-submit {
+    padding: 10px 20px;
+    background: var(--color_in);
+    color: var(--color_header);
+    border: 2px solid var(--color_bg_text);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.search-submit:hover {
+    border: 2px solid var(--color_bg_text);
+    color: var(--color_bg_text);
+    background: var(--color_header);
+}
+
+/* Кнопка закрытия (крестик) */
+.search-close-label {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--color_bg_text);
+    padding: 0 8px;
+    line-height: 1;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.search-close-label:hover {
+    color: var(--color_search);
+    transform: scale(1.1);
+}
+
+/* Остальные кнопки */
+.login-btn {
+    padding: 8px 20px;
+    background-color: transparent;
+    color: var(--color_bg_text);
+    border: 2px solid var(--color_bg_text);
+    border-radius: var(--border-radius-sm);
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.login-btn:hover {
+    background-color: var(--color_in);
+    color: var(--color_header);
+}
+
+/* Кнопка регистрации - исправляем hover */
+.signup-btn {
+    padding: 8px 20px;
+    background-color: var(--color_in);
+    color: var(--color_header);
+    border: 2px solid var(--color_bg_text);
+    border-radius: var(--border-radius-sm);
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.signup-btn:hover {
+    background-color: transparent;
+    color: var(--color_bg_text);
+}
+

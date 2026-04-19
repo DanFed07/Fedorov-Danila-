@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 800px; margin: 2rem auto;">
+    <div class="card" style="background: white; padding: 2rem; border-radius: 10px;">
+        <h1 style="color: #667eea;">{{ title }}</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-primary">Сохранить</button>
+            <a href="{% url 'blog:news_list' %}" class="btn">Отмена</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 800px; margin: 2rem auto;">
+    <div class="card" style="background: white; padding: 2rem; border-radius: 10px;">
+        <h1 style="color: #667eea;">Профиль пользователя</h1>
+        <p><strong>Имя:</strong> {{ user.get_full_name|default:user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Дата регистрации:</strong> {{ user.date_joined|date:"d.m.Y" }}</p>
+
+        <h3>Мои комментарии</h3>
+        {% for comment in user_comments %}
+            <div style="border: 1px solid #ddd; padding: 1rem; margin: 1rem 0;">
+                <p>{{ comment.text }}</p>
+                <small>
+                    {% if comment.news %}
+                        К новости: {{ comment.news.title }}
+                    {% else %}
+                        К статье: {{ comment.article.title }}
+                    {% endif %}
+                </small>
+            </div>
+        {% empty %}
+            <p>Нет комментариев</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

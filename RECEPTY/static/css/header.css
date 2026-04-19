@@ -1,0 +1,218 @@
+.header {
+    background-color: var(--color_header);
+    position: sticky;
+    top: 0;
+    border-bottom: 5px solid var(--color_line);
+    z-index: 100;
+}
+
+.header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    min-height: 70px;
+    max-width: var(--container-max);
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+    margin: 0 auto;
+}
+
+/* ========== ЛОГОТИП ========== */
+.logo {
+    flex-shrink: 0;
+}
+
+.logo a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color_in);
+    text-decoration: none;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+/* ========== ДЕСКТОПНОЕ МЕНЮ ========== */
+.nav-desktop {
+    display: none;
+    margin-left: 0;
+}
+
+.menu-desktop {
+    display: flex;
+    gap: var(--space-md);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-desktop li a {
+    color: var(--color_bg_text);
+    text-decoration: none;
+    font-weight: 500;
+    padding: var(--space-xs) 0;
+    transition: var(--transition);
+    position: relative;
+}
+
+.menu-desktop li a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color_search);
+    transition: width 0.3s ease;
+}
+
+.menu-desktop li a:hover::after {
+    width: 100%;
+}
+
+.menu-desktop li a:hover {
+    color: var(--color_search);
+}
+
+/* ========== БУРГЕР-МЕНЮ (мобильная версия) ========== */
+.hamb {
+    font-size: 30px;
+    cursor: pointer;
+    user-select: none;
+    z-index: 101;
+    display: flex;
+}
+
+.hamb .close-icon {
+    display: none;
+}
+
+.hamb span {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.side-menu {
+    display: none;
+}
+
+/* ========== МОБИЛЬНОЕ МЕНЮ (выезжающее) ========== */
+.nav-mobile {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background-color: var(--color_header_l);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+    z-index: 99;
+}
+
+.side-menu:checked~.nav-mobile {
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+.side-menu:checked~.hamb .burger-icon {
+    display: none;
+}
+
+.side-menu:checked~.hamb .close-icon {
+    display: inline;
+}
+
+/* ========== МЕНЮ В МОБИЛЬНОЙ ВЕРСИИ ========== */
+.menu-mobile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-mobile li {
+    width: 100%;
+    border-bottom: 1px solid var(--color_line);
+}
+
+.menu-mobile li a {
+    display: block;
+    padding: var(--space-md);
+    color: var(--color_bg_text);
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.menu-mobile li a:hover {
+    background-color: var(--color_after);
+}
+
+/* ========== МОБИЛЬНЫЕ КНОПКИ ========== */
+.mobile-actions {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-md);
+    gap: var(--space-sm);
+    border-top: none;
+    margin-top: var(--space-sm);
+}
+
+/* Стили для кнопок входа/регистрации на мобильных */
+.login-btn-mobile,
+.signup-btn-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border-radius: var(--border-radius-sm);
+    font-weight: 600;
+    transition: var(--transition);
+    width: 100%;
+}
+
+.login-btn-mobile {
+    background-color: transparent;
+    color: var(--color_bg_text);
+    border: 2px solid var(--color_bg_text);
+}
+
+.signup-btn-mobile {
+    background-color: var(--color_in);
+    color: var(--color_header);
+    border: 2px solid var(--color_bg_text);
+}
+
+/* Мобильный поиск (упрощенный) */
+.mobile-search-simple {
+    width: 100%;
+    margin-bottom: var(--space-sm);
+    display: none;
+    /* Скрыт на десктопе, показывается в медиа-запросе */
+}
+
+.mobile-search-simple-input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid var(--color_bg_text);
+    border-radius: var(--border-radius-sm);
+    font-size: 16px;
+    outline: none;
+    background: var(--color_header);
+    color: var(--color_bg_text);
+}
+
+.mobile-search-simple-input placeholder {
+    color: var(--color_bg_text);
+}
+
+.mobile-search-simple-input:focus {
+    border-color: var(--color_search);
+    box-shadow: 0 0 0 3px rgba(123, 108, 54, 0.2);
+}
+
+/* Блокировка скролла при открытом меню */
+body:has(.side-menu:checked) {
+    overflow: hidden;
+}

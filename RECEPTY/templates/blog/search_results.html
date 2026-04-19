@@ -1,0 +1,41 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block title %}Результаты поиска: {{ query }}{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
+    <h1 style="color: #667eea;">Результаты поиска: "{{ query }}"</h1>
+
+    {% if not news_results and not article_results %}
+        <div class="card" style="background: white; padding: 2rem; border-radius: 10px; text-align: center;">
+            <p>Ничего не найдено по вашему запросу "{{ query }}"</p>
+            <p>Попробуйте изменить поисковый запрос</p>
+        </div>
+    {% endif %}
+
+    {% if news_results %}
+        <h2 style="margin-top: 2rem;">📰 Новости ({{ news_results|length }})</h2>
+        {% for news in news_results %}
+            <div class="card" style="background: white; padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
+                <h3><a href="{% url 'blog:news_detail' news.id %}" style="color: #667eea;">{{ news.title }}</a></h3>
+                <p style="color: #666;">📅 {{ news.published_date|date:"d.m.Y" }} | ✍️ {{ news.author.username }}</p>
+                <p>{{ news.content|truncatewords:50|safe }}</p>
+                <a href="{% url 'blog:news_detail' news.id %}" class="btn-primary">Читать →</a>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if article_results %}
+        <h2 style="margin-top: 2rem;">📝 Статьи ({{ article_results|length }})</h2>
+        {% for article in article_results %}
+            <div class="card" style="background: white; padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem;">
+                <h3><a href="{% url 'blog:article_detail' article.id %}" style="color: #667eea;">{{ article.title }}</a></h3>
+                <p style="color: #666;">✍️ {{ article.author.username }} | 👁️ {{ article.views_count }} просмотров</p>
+                <p>{{ article.content|truncatewords:50|safe }}</p>
+                <a href="{% url 'blog:article_detail' article.id %}" class="btn-primary">Читать →</a>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}

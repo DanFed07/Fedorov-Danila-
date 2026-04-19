@@ -1,0 +1,136 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="icon" href="{% static 'blog/images/logo.png' %}" type="image/png">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <a href="{% url 'blog:index' %}">СВЯЗЬ</a>
+            </div>
+
+            <nav class="nav-desktop">
+                <ul class="menu-desktop">
+                    <li><a href="{% url 'blog:article_list' %}">Статьи</a></li>
+                    <li><a href="{% url 'blog:news_list' %}">Новости</a></li>
+                    <li><a href="{% url 'blog:about' %}">О проекте</a></li>
+                    <li><a href="{% url 'blog:connection' %}">Связь с нами</a></li>
+                </ul>
+            </nav>
+
+            <div class="desktop-actions">
+                <div class="search-wrapper">
+                    <input type="checkbox" id="search-toggle" class="search-checkbox">
+                    <label for="search-toggle" class="search-label">
+                        <img src="{% static 'blog/images/search.svg' %}" alt="search">
+                    </label>
+                    <div class="search-dropdown">
+                        <form class="search-form" action="{% url 'blog:search' %}" method="get">
+                            <input type="text" name="q" class="search-input" placeholder="Поиск...">
+                            <button type="submit" class="search-submit">Найти</button>
+                            <label for="search-toggle" class="search-close-label">✕</label>
+                        </form>
+                    </div>
+                </div>
+                <a href="{% url 'blog:login' %}" class="login-btn">Вход</a>
+                <a href="{% url 'blog:sign' %}" class="signup-btn">Регистрация</a>
+            </div>
+
+            <input class="side-menu" type="checkbox" id="side-menu" />
+            <label class="hamb" for="side-menu">
+                <span class="burger-icon">☰</span>
+                <span class="close-icon">✕</span>
+            </label>
+
+            <nav class="nav-mobile">
+                <ul class="menu-mobile">
+                    <li><a href="{% url 'blog:article_list' %}">Статьи</a></li>
+                    <li><a href="{% url 'blog:news_list' %}">Новости</a></li>
+                    <li><a href="{% url 'blog:about' %}">О проекте</a></li>
+                    <li><a href="{% url 'blog:connection' %}">Связь с нами</a></li>
+                </ul>
+                <div class="mobile-actions">
+                    <form action="{% url 'blog:search' %}" method="get">
+                        <input type="text" name="q" class="mobile-search-simple-input" placeholder="Поиск...">
+                    </form>
+                    <a href="{% url 'blog:login' %}" class="login-btn-mobile">Вход</a>
+                    <a href="{% url 'blog:sign' %}" class="signup-btn-mobile">Регистрация</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="auth-section">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <h1 class="auth-title">Регистрация</h1>
+
+                    <form class="auth-form" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="name">Имя</label>
+                            <input type="text" id="name" name="name" placeholder="Анна Иванова" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username">Имя пользователя</label>
+                            <input type="text" id="username" name="username" placeholder="username" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="example@mail.ru" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password1">Пароль</label>
+                            <input type="password" id="password1" name="password1" placeholder="••••••••" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password2">Подтвердите пароль</label>
+                            <input type="password" id="password2" name="password2" placeholder="••••••••" required>
+                        </div>
+
+                        <button type="submit" class="auth-btn">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+                    </form>
+
+                    <p class="auth-footer">
+                        Уже есть аккаунт? <a href="{% url 'blog:login' %}">Войдите</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container-footer">
+            <div class="footer-about">
+                <p class="footer-description">
+                    СВЯЗЬ — это платформа для обмена мыслями, идеями и опытом.
+                </p>
+            </div>
+            <div class="footer-social">
+                <p class="social-title">Мы в соцсетях:</p>
+                <ul class="social-network">
+                    <li><a href="#"><img src="{% static 'blog/images/VK.svg' %}" alt="VK"></a></li>
+                    <li><a href="#"><img src="{% static 'blog/images/OK.svg' %}" alt="OK"></a></li>
+                    <li><a href="#"><img src="{% static 'blog/images/MAX.svg' %}" alt="Max"></a></li>
+                </ul>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2025 СВЯЗЬ. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
